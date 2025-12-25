@@ -5,20 +5,22 @@ from fastapi import Depends, FastAPI, Request, Response
 from fastapi.responses import JSONResponse, PlainTextResponse, RedirectResponse, FileResponse
 from starlette.staticfiles import StaticFiles
 
-from auth import auth_backend, cookie_transport, current_active_user, current_optional_user, current_superuser, fastapi_users
-from db import create_db_and_tables
+from server.auth import auth_backend, cookie_transport, current_active_user, current_optional_user, current_superuser, fastapi_users
+from server.db import create_db_and_tables
 
 WORKSPACE_DIR = Path(__file__).resolve().parent.parent
 PUBLIC_DIR = WORKSPACE_DIR / "public"
 
 
-@asynccontextmanager
-async def lifespan(_: FastAPI):
+app = FastAPI()
+
+@app.on_event("startup")
+async def on_startup():
     await create_db_and_tables()
-    yield
 
-
-app = FastAPI(lifespan=lifespan)
+@app.on_event("shutdown")
+async def on_shutdown():
+    pass
 
 # Framework-managed auth routes:
 # - POST /auth/jwt/login

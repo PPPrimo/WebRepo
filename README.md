@@ -32,26 +32,25 @@ python tools/manage_users.py remove admin@example.com --admin --force
 python -m uvicorn server.app:app --host 127.0.0.1 --port 8000
 ```
 
-Notes:
-- Login endpoint is `POST /auth/jwt/login` and sets an HttpOnly cookie.
-- Logout endpoint is `POST /auth/jwt/logout` (the UI also provides a convenience `GET /api/logout`).
-- Cookie auth is **Secure** by default; for plain-HTTP local testing set `AUTH_COOKIE_SECURE=0`.
-
 Production:
 - `APP_ENV=production` - set through environment Linux example: Environment="APP_ENV=production"
 - `AUTH_JWT_SECRET` - Environment="AUTH_JWT_SECRET=put-a-long-random-string-here"
 
 ### 4) Start Nginx
+1- install nginx
+2- do "path to nginx.exe" "path to nginx folder" "path to nginx config folder"
 
-## Notes
-- Admin-only restriction for Feature 2 is enforced by protecting the whole site behind Basic Auth.
-- Zoom range can be tuned by `minDistance` and `maxDistance` in `src/main.js`.
+## Cloudflare
+DNS record (shares same ip):
+    Use "curl ifconfig.me" to check for current IP
+    Type A on primowang.com
+    CNName on www.primowang.com
+Security: 
+    SSL/TLS - Full (strict)
+    Private key: RSA, 3 years, key is downlaoded and send pasted to server
+    Edge Certificates
+    Always use HTTPS
+    Automatic HTTPS rewrites
 
-## Production TLS for primowang.com
-- Use a real certificate for `primowang.com`/`www.primowang.com` (Let’s Encrypt or Cloudflare). A self-signed cert will always show warnings for the public.
-- Add an HTTP (port 80) server that redirects to HTTPS (port 443).
+primowangfirstsecretkey
 
-## Cloudflare + Nginx (Linux) deployment notes
-- `dev_local/` is for local testing only and should not be deployed.
-- If you deploy behind Cloudflare, use the production Nginx template in deploy/nginx/primowang.com.conf.
-- Create `/etc/nginx/snippets/cloudflare_ips.conf` from Cloudflare’s published IP ranges so rate limiting uses the real client IP.

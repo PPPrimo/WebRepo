@@ -10,8 +10,8 @@ from fastapi_users.authentication import (
 )
 from fastapi_users_db_sqlalchemy import SQLAlchemyUserDatabase
 
-from db import get_async_session
-from models import User
+from server.db import get_async_session
+from server.models import User
 
 APP_ENV = os.getenv("APP_ENV", "development").lower()
 JWT_SECRET = os.getenv("AUTH_JWT_SECRET", "CHANGE_ME_IN_PROD")
