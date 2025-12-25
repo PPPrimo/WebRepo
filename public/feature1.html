@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feature 1</title>
+  <link rel="stylesheet" href="./assets/base.css?v=20251214" />
+  <link rel="stylesheet" href="./assets/feature1.css?v=20251214" />
+</head>
+<body>
+  <section id="feature1" class="panel">
+    <div class="feature1-toolbar">
+      <button class="btn" id="uploadProductsBtn">Upload Products</button>
+      <button class="btn" id="addProductBtn">+ Add Product</button>
+    </div>
+    <div class="product-grid" id="productGrid"></div>
+    <div class="product-hover-overlay" id="hoverOverlay">
+      <img id="hoverImage" alt="Preview" />
+    </div>
+    <div class="product-detail-modal" id="detailModal">
+      <div class="product-detail">
+        <div class="modal-close" id="modalClose">×</div>
+        <h2 id="detailName"></h2>
+        <div class="price" id="detailPrice"></div>
+        <p id="detailDesc"></p>
+        <div class="images" id="detailImages"></div>
+      </div>
+    </div>
+  </section>
+  <script type="module" src="./src/feature1.js?v=20251214"></script>
+  <script src="./assets/read_only.js?v=20251222"></script>
+</body>
+</html>

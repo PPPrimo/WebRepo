@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feature 2 Viewer</title>
+  <link rel="stylesheet" href="./assets/base.css?v=20251214" />
+  <link rel="stylesheet" href="./assets/feature2.css?v=20251218" />
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+  <section id="feature2" class="panel">
+    <div id="viewer">
+      <canvas id="assemblyCanvas"></canvas>
+
+      <div id="hoverInfo" hidden>
+        <div class="title">Module Info</div>
+        <div class="row"><span>Voltages:</span><span id="hv-volts">-</span></div>
+        <div class="row"><span>Temperatures:</span><span id="hv-temps">-</span></div>
+        <div class="row"><span>SOC:</span><span id="hv-soc">-</span></div>
+        <div class="row"><span>Current:</span><span id="hv-current">-</span></div>
+        <div class="row sub" id="hv-item">-</div>
+      </div>
+
+      <div id="packInfo">
+        <div class="title">Pack Info</div>
+        <div class="row"><span>Voltages:</span><span>-</span></div>
+        <div class="row"><span>Temperatures:</span><span>-</span></div>
+        <div class="row"><span>SOC:</span><span>-</span></div>
+        <div class="row"><span>Current:</span><span>-</span></div>
+        <div class="row sub" id="packExtend">. . .</div>
+      </div>
+
+      <div id="vehicleInfo">
+        <div class="title">Vehicle Info</div>
+        <div class="row"><span>Driving State:</span><span id=>-</span></div>
+        <div class="row"><span>HVIL:</span><span id=>-</span></div>
+        <div class="row"><span>Isolation:</span><span id=>-</span></div>
+        <div class="row"><span>Battery Condition:</span><span id=>-</span></div>
+        <div class="row"><span>Internal Communication Status:</span><span id=>-</span></div>
+        <div class="row"><span>Cell Sensing Status:</span><span id=>-</span></div>
+        <div class="row sub" id="vehicleExtend">. . .</div>
+      </div>
+
+    </div>
+    <div class="note">Draws PNG layers from <code>/PackAssembly</code> using positions from Excel.</div>
+  </section>
+  <script type="module" src="./src/f2_draw.js?v=20251218"></script>
+  <script src="./assets/read_only.js?v=20251222"></script>
+</body>
+</html>
