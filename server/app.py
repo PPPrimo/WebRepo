@@ -36,7 +36,7 @@ app.include_router(
 async def security_headers_and_methods(request: Request, call_next):
     # Block access to internal directories (defense-in-depth)
     path = request.url.path
-    if path.startswith(("/server/", "/Resources/", "/tools/", "/dev_local/")):
+    if path.startswith(("/server/", "/tools/", "/dev_local/")):
         return PlainTextResponse("Forbidden", status_code=403)
 
     # Allow only safe methods globally; allow POST for login/logout.

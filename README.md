@@ -52,5 +52,38 @@ Security:
     Always use HTTPS
     Automatic HTTPS rewrites
 
-primowangfirstsecretkey
+## Linux
+Cert:
+    sudo mkdir -p /etc/ssl/primowang.com
+    sudo nano /etc/ssl/primowang.com/fullchain.pem
+    sudo nano /etc/ssl/primowang.com/privkey.pem
+
+    sudo chmod 644 /etc/ssl/primowang.com/fullchain.pem Owner read + write, other/group read only
+    sudo chmod 600 /etc/ssl/primowang.com/privkey.pem Owner read + write, other/group no access
+    sudo chown root:root /etc/ssl/primowang.com/fullchain.pem /etc/ssl/primowang.com/privkey.pem ensure proper ownership
+Test + reload
+    sudo nginx -t
+    sudo systemctl reload nginx
+Cloudflare tunnel
+    cloudflared tunnel login
+    cloudflared tunnel create primowang-tunnel
+    mkdir -p ~/.cloudflared
+    nano ~/.cloudflared/config.yml
+
+    cloudflared tunnel route dns primowang-tunnel primowang.com
+    cloudflared tunnel route dns primowang-tunnel www.primowang.com
+running python
+    sudo nano /etc/systemd/system/webrepo.service
+    sudo systemctl daemon-reload
+    sudo systemctl reset0fauked webrepo
+    sudo systemctl start webrepo
+Running linux tunnel
+    sudo cloudflared service install
+    cloudflared service installed
+
+    sudo systemctl daemon-reload
+    sudo systemctl enable cloudflared
+    sudo systemctl start cloudflared
+
+
 

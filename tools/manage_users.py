@@ -12,14 +12,13 @@ from sqlalchemy import delete, select
 
 
 ROOT = Path(__file__).resolve().parent.parent
-SERVER_DIR = ROOT / "server"
-sys.path.insert(0, str(SERVER_DIR))
+sys.path.insert(0, ROOT)
 
-from db import create_db_and_tables, get_async_session  # noqa: E402
-from models import User  # noqa: E402
-from schemas import UserCreate  # noqa: E402
-from auth import get_user_db, get_user_manager  # noqa: E402
-from db import close_db  # noqa: E402
+from server.db import create_db_and_tables, get_async_session  # noqa: E402
+from server.models import User  # noqa: E402
+from server.schemas import UserCreate  # noqa: E402
+from server.auth import get_user_db, get_user_manager  # noqa: E402
+from server.db import close_db  # noqa: E402
 
 
 get_async_session_context = contextlib.asynccontextmanager(get_async_session)
